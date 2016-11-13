@@ -51,7 +51,6 @@
     state: installed
 
 - name: Enable nginx-jenkins configuration.
-  become: true
   file:
     src: "{{ nginx_template_config_dest }}"
     dest: /etc/nginx/conf.d/sites-enabled/jenkins.conf
