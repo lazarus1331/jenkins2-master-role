@@ -23,7 +23,38 @@
     state: installed
   with_items: "{{ jenkins_build_depends }}"
 
+- name: Ensure python dependencies are installed.
+  pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    state: installed
+  with_items: "{{ python_build_depends }}"
+
+- name: Add apt key for jenkins repository.
+  apt_key:
+    url: "{{ jenkins_apt_key_url }}"
+    state: present
+
+- name: Update apt repositories for jenkins installation.
+  apt_repository:
+    repo: "{{ jenkins_apt_repository }}"
+    state: present
+
 - name: Ensure jenkins is installed.
   package:
     name: jenkins
     state: installed
+
+- name: Ensure nginx is installed.
+  package:
+    name: nginx
+    state: installed
+
+- name: Enable nginx-jenkins configuration.
+  become: true
+  file:
+    src: "{{ nginx_template_config_dest }}"
+    dest: /etc/nginx/conf.d/sites-enabled/jenkins.conf
+    state: link
+  notify: Restart nginx
+

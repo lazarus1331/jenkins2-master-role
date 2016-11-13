@@ -18,3 +18,10 @@
     name: jenkins
   notify:
     - Restart jenkins
+
+- name: Enable nginx service.
+  service:
+    enabled: yes
+    name: nginx
+  notify:
+    - Restart nginx

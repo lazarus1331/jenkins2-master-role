@@ -13,4 +13,10 @@
 # under the License.
 ---
 __jenkins_build_depends:
-  - openjdk-7-jdk
+  - default-jdk
+  - git
+  - python
+  - python-dev
+  - python-pip
+  - build-essential
+  - wget
