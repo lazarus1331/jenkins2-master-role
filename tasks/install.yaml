@@ -27,7 +27,7 @@
   pip:
     name: "{{ item.name }}"
     version: "{{ item.version }}"
-    state: installed
+    state: present
   with_items: "{{ python_build_depends }}"
 
 - name: Add apt key for jenkins repository.

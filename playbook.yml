@@ -1,0 +1,5 @@
+---
+- name: Install jenkins
+  hosts: all
+  roles:
+    - jenkins2-master-role
