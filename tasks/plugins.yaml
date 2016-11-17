@@ -8,7 +8,7 @@
     mode: 0444
 
 - name: install jenkins plugins
-  command: "java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin {{ item }}" 
+  command: "java -jar /tmp/jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin {{ item }}" 
   with_items: "{{ jenkins_plugins }}"
   notify: Restart jenkins
   ignore_errors: true
