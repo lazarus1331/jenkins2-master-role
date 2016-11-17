@@ -1,0 +1,46 @@
+# Copyright 2015 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+jenkins_user_name: jenkins
+jenkins_user_group: "{{ jenkins_user_name }}"
+
+jenkins_config_java_options: '-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false'
+jenkins_config_listen_address: 127.0.0.1
+jenkins_config_port: 8080
+jenkins_config_args: "--httpListenAddress={{ jenkins_config_listen_address }} --httpPort={{ jenkins_config_port }} "
+
+jenkins_apt_key_url: http://pkg.jenkins-ci.org/debian-stable/jenkins-ci.org.key
+jenkins_apt_repository: deb https://pkg.jenkins.io/debian-stable binary/
+jenkins_version: 2.19.3
+jenkins_package_repository: https://pkg.jenkins.io/debian-stable/binary/
+jenkins_package_url: "{{ jenkins_package_repository }}jenkins_{{ jenkins_version }}_all.deb"
+jenkins_plugins:
+  - github
+  - thinbackup
+  - docker-custom-build-environment
+  - docker-plugin
+  - docker-build-step
+  - ansible
+  - jobConfigHistory
+  - scm-sync-configuration
+  - workflow-aggregator
+  - github-oauth
+  - ws-cleanup
+  - sbt
+
+env: dev
+domain: local.net
+
+python_build_depends:
+  - ansible
