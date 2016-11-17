@@ -12,6 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+env: dev
+domain: local.net
+
 jenkins_user_name: jenkins
 jenkins_user_group: "{{ jenkins_user_name }}"
 
@@ -25,6 +28,7 @@ jenkins_apt_repository: deb https://pkg.jenkins.io/debian-stable binary/
 jenkins_version: 2.19.3
 jenkins_package_repository: https://pkg.jenkins.io/debian-stable/binary/
 jenkins_package_url: "{{ jenkins_package_repository }}jenkins_{{ jenkins_version }}_all.deb"
+
 jenkins_plugins:
   - github
   - thinbackup
@@ -38,9 +42,38 @@ jenkins_plugins:
   - github-oauth
   - ws-cleanup
   - sbt
-
-env: dev
-domain: local.net
+  - jira
+  - slack
 
 python_build_depends:
-  - ansible
+  - ansible==2.1.1.0
+  - Fabric
+  - Jinja2
+  - MarkupSafe
+  - PyYAML
+  - awscli
+  - boto
+  - boto3
+  - botocore
+  - cryptography
+  - docutils
+  - ecdsa
+  - futures
+  - httplib2
+  - jmespath
+  - ndg-httpsclient
+  - netaddr
+  - os_client_config
+  - paramiko
+  - psphere
+  - pyasn1
+  - pycrypto
+  - pyopenssl
+  - python-dateutil
+  - python-novaclient
+  - pyvmomi
+  - requests
+  - shade
+  - simplejson
+  - six
+  - urllib3
