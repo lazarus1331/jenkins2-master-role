@@ -20,6 +20,3 @@
 
 - include: config.yaml
   become: yes
-
-- include: service.yaml
-  become: yes

@@ -1,5 +1,5 @@
 upstream app_server {
-    server {{ jenkins_config_ajp_listen_address }}:{{ jenkins_config_port }} fail_timeout=0;
+    server {{ jenkins_config_listen_address }}:{{ jenkins_config_port }} fail_timeout=0;
 }
 
 server {

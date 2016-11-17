@@ -12,18 +12,36 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create required directories.
-  file:
-    group: "{{ jenkins_user_group }}"
-    owner: "{{ jenkins_user_name }}"
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ jenkins_user_home }}/plugins"
+- name: Enable jenkins service.
+  service:
+    enabled: yes
+    name: jenkins
 
-- name: Template jenkins service config.
+- name: Enable nginx service.
+  service:
+    enabled: yes
+    name: nginx
+
+- name: Add jenkins service config.
   template:
+    src: templates/etc/default/jenkins.j2
     dest: "{{ jenkins_template_config_dest }}"
-    src: "{{ jenkins_template_config_src }}"
   when: ansible_os_family == 'Debian'
   notify: Restart jenkins
+
+- name: Add nginx-jenkins configuration.
+  template:
+    src: ./templates/etc/nginx/nginx-jenkins.j2
+    dest: /etc/nginx/sites-available/jenkins.conf
+
+- name: Remove default nginx configuration.
+  file:
+    dest: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Enable nginx-jenkins configuration.
+  file:
+    src: /etc/nginx/sites-available/jenkins.conf
+    dest: /etc/nginx/sites-enabled/jenkins.conf
+    state: link
+  notify: Restart nginx
