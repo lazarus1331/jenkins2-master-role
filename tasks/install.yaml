@@ -34,20 +34,21 @@
     state: present
   with_items: "{{ python_build_depends | list }}"
 
-- name: Add apt key for jenkins repository.
-  apt_key:
-    url: "{{ jenkins_apt_key_url }}"
-    state: present
+- name: Add jenkins service config.
+  template:
+    src: templates/etc/default/jenkins.j2
+    dest: "{{ jenkins_template_config_dest }}"
+  when: ansible_os_family == 'Debian'
 
-- name: Update apt repositories for jenkins installation.
-  apt_repository:
-    repo: "{{ jenkins_apt_repository }}"
-    state: present
+- name: Install jenkins .deb package from the internet.
+  apt:
+    deb: "{{ jenkins_package_url }}"
+    force: true
 
-- name: Ensure jenkins is installed.
-  package:
+- name: Start jenkins
+  service:
     name: jenkins
-    state: installed
+    state: started
 
 - name: Ensure nginx is installed.
   package:

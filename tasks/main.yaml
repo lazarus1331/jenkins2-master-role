@@ -20,3 +20,5 @@
 
 - include: config.yaml
   become: yes
+
+- include: plugins.yaml

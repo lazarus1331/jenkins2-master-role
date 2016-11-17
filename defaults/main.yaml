@@ -22,6 +22,22 @@ jenkins_config_args: "--httpListenAddress={{ jenkins_config_listen_address }} --
 
 jenkins_apt_key_url: http://pkg.jenkins-ci.org/debian-stable/jenkins-ci.org.key
 jenkins_apt_repository: deb https://pkg.jenkins.io/debian-stable binary/
+jenkins_version: 2.19.3
+jenkins_package_repository: https://pkg.jenkins.io/debian-stable/binary/
+jenkins_package_url: "{{ jenkins_package_repository }}jenkins_{{ jenkins_version }}_all.deb"
+jenkins_plugins:
+  - github
+  - thinbackup
+  - docker-custom-build-environment
+  - docker-plugin
+  - docker-build-step
+  - ansible
+  - jobConfigHistory
+  - scm-sync-configuration
+  - workflow-aggregator
+  - github-oauth
+  - ws-cleanup
+  - sbt
 
 env: dev
 domain: local.net

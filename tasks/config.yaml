@@ -22,13 +22,6 @@
     enabled: yes
     name: nginx
 
-- name: Add jenkins service config.
-  template:
-    src: templates/etc/default/jenkins.j2
-    dest: "{{ jenkins_template_config_dest }}"
-  notify: Restart jenkins
-  when: ansible_os_family == 'Debian'
-
 - name: Add nginx-jenkins configuration.
   template:
     src: ./templates/etc/nginx/nginx-jenkins.j2
