@@ -12,6 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+env: dev
+domain: local.net
+
 jenkins_user_name: jenkins
 jenkins_user_group: "{{ jenkins_user_name }}"
 
@@ -38,9 +41,9 @@ jenkins_plugins:
   - github-oauth
   - ws-cleanup
   - sbt
-
-env: dev
-domain: local.net
+  - jira
+  - slack
+  - terraform
 
 python_build_depends:
   - ansible
