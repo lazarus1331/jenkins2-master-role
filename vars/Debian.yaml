@@ -18,5 +18,6 @@ __jenkins_build_depends:
   - build-essential
   - wget
   - docker.io
+  - unzip
 
 jenkins_template_config_dest: /etc/default/jenkins
