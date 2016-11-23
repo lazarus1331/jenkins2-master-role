@@ -10,6 +10,7 @@ Ansible role to manage Jenkins 2.x master
 Installs jenkins-2.19.3 on debian based system (Debian, Ubuntu) with nginx proxy and several build tools and includes jenkins plugin installation.
 
 ** !!Warning!! Security setup is disabled by default, and is required for automated plugin installation **
+
 Security may be enabled at any time after accessing the GUI.
 
 ## Requirements
@@ -18,7 +19,7 @@ Ansible
 
 ### Packages:
 
-See Vagrantfile for debian packages to install to support ansible provisioning.
+A Python installation must exist on the host that is compatible with Ansible.
 
 ## Role Variables
 
@@ -58,6 +59,10 @@ Defaults:
       roles:
         - jenkins2-master-role
 ```
+
+## Testing
+
+A Vagrantfile is including for testing purposes.  If you have Vagrant installed, then you may issue a `vagrant up` commmand inside this directory.
 
 ## Based Upon
 Source: https://git.openstack.org/cgit/openstack/ansible-role-jenkins
