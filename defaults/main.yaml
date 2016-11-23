@@ -29,6 +29,9 @@ jenkins_version: 2.19.3
 jenkins_package_repository: https://pkg.jenkins.io/debian-stable/binary/
 jenkins_package_url: "{{ jenkins_package_repository }}jenkins_{{ jenkins_version }}_all.deb"
 
+terraform_url: https://releases.hashicorp.com/terraform/0.7.11/terraform_0.7.11_linux_amd64.zip
+packer_url: https://releases.hashicorp.com/packer/0.12.0/packer_0.12.0_linux_amd64.zip
+
 jenkins_plugins:
   - github
   - thinbackup
@@ -44,6 +47,7 @@ jenkins_plugins:
   - sbt
   - jira
   - slack
+  - terraform
 
 python_build_depends:
   - ansible==2.1.1.0
