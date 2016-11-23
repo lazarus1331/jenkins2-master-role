@@ -39,12 +39,14 @@
     src: "{{ terraform_url }}"
     dest: /usr/local/bin
     remote_src: yes
+    copy: no
 
 - name: download packer and deploy
 - unarchive: 
     src: "{{ packer_url }}"
     dest: /usr/local/bin
     remote_src: yes
+    copy: no
 
 - name: Add jenkins service config.
   template:
