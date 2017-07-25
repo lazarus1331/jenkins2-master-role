@@ -22,11 +22,11 @@ jenkins_config_listen_address: 127.0.0.1
 jenkins_config_port: 8080
 jenkins_config_args: "--httpListenAddress={{ jenkins_config_listen_address }} --httpPort={{ jenkins_config_port }} "
 jenkins_package_repository: https://pkg.jenkins.io/debian-stable/binary/
-jenkins_version: 2.19.3
+jenkins_version: 2.60.1
 jenkins_package_url: "{{ jenkins_package_repository }}jenkins_{{ jenkins_version }}_all.deb"
 
-terraform_url: https://releases.hashicorp.com/terraform/0.7.11/terraform_0.7.11_linux_amd64.zip
-packer_url: https://releases.hashicorp.com/packer/0.12.0/packer_0.12.0_linux_amd64.zip
+terraform_url: https://releases.hashicorp.com/terraform/0.9.5/terraform_0.9.5_linux_amd64.zip
+packer_url: https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip
 
 jenkins_plugins:
   - github
@@ -38,16 +38,16 @@ jenkins_plugins:
   - jobConfigHistory
   - scm-sync-configuration
   - workflow-aggregator
-  - github-oauth
   - ws-cleanup
   - sbt
   - jira
   - slack
   - terraform
   - packer
+  - plugin-usage-plugin
 
 python_build_depends:
-  - ansible==2.1.1.0
+  - ansible
   - Fabric
   - Jinja2
   - MarkupSafe
@@ -78,3 +78,4 @@ python_build_depends:
   - simplejson
   - six
   - urllib3
+  - docker-compose

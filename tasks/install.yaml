@@ -35,18 +35,16 @@
   with_items: "{{ python_build_depends | list }}"
 
 - name: download terraform and deploy
-- unarchive: 
+  unarchive: 
     src: "{{ terraform_url }}"
     dest: /usr/local/bin
     remote_src: yes
-    copy: no
 
 - name: download packer and deploy
-- unarchive: 
+  unarchive: 
     src: "{{ packer_url }}"
     dest: /usr/local/bin
     remote_src: yes
-    copy: no
 
 - name: Add jenkins service config.
   template:
